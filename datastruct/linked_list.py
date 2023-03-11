@@ -42,10 +42,37 @@ class LinkedList():
         ll_string += ' None'
         print(ll_string)
 
+    def to_list(self):
+        linked_list_obj = []
+        linked_list_data = []
+        if self.begin != None:
+            linked_list_obj.append(self.begin)
+        else:
+            return linked_list_data
+        while True:
+            if linked_list_obj[len(linked_list_obj)-1].next_node == None:
+                break
+            else:
+                linked_list_obj.append(linked_list_obj[len(linked_list_obj)-1].next_node)
+        for obj in linked_list_obj:
+            linked_list_data.append(obj.data)
+        return linked_list_data
+
+    def get_data_by_id(self, id):
+        try:
+            linked_list_data = self.to_list()
+            for data in linked_list_data:
+                if data['id'] == id:
+                    return data
+        except:
+            raise TypeError(f'Данные не являются словарем или в словаре нет id {id}')
+
 ll = LinkedList()
 ll.insert_beginning({'id': 1})
 ll.insert_at_end({'id': 2})
 ll.insert_at_end({'id': 3})
 ll.insert_beginning({'id': 0})
-ll.print_ll()
+print(ll.to_list())
+user_data = ll.get_data_by_id(2)
+print(user_data)
 
