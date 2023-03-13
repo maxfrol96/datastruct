@@ -64,8 +64,8 @@ class LinkedList():
             for data in linked_list_data:
                 if data['id'] == id:
                     return data
-        except:
-            raise TypeError(f'Данные не являются словарем или в словаре нет id {id}')
+        except TypeError:
+            print(f'Данные не являются словарем или в словаре нет id {id}')
 
 ll = LinkedList()
 ll.insert_beginning({'id': 1})
